@@ -8,11 +8,10 @@ pdfs_paths = ["", ""]
 # Desired output file name
 output_file_name = ""
 
-merger = PyPDF2.PdfMerger()
+merger = PyPDF2.PdfFileMerger()
 
 for path in pdfs_paths:
-    with open(path, 'rb') as pdf:
-        merger.append(pdf)
+        merger.append(PyPDF2.PdfFileReader(path, 'rb'))
 
 with open(output_file_name, 'wb') as output:
     merger.write(output)
